@@ -1,0 +1,22 @@
+{
+  "name": "dev-portfolio",
+  "version": "1.0.0",
+  "description": "Nouman Ahmad - Developer Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.8",
+    "formidable": "^3.5.1"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "vercel"
+  ],
+  "author": "Nouman Ahmad",
+  "license": "MIT"
+}
