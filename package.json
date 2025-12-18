@@ -2,6 +2,7 @@
   "name": "dev-portfolio",
   "version": "1.0.0",
   "description": "Nouman Ahmad - Developer Portfolio",
+  "type": "module",
   "main": "index.html",
   "scripts": {
     "dev": "vercel dev",

@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
-const formidable = require('formidable');
-const fs = require('fs');
+import nodemailer from 'nodemailer';
+import formidable from 'formidable';
+import fs from 'fs';
 
 // Helper function to parse form data
 const parseForm = (req) => {
@@ -22,7 +22,7 @@ const parseForm = (req) => {
 };
 
 // Main handler function
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -123,4 +123,4 @@ module.exports = async (req, res) => {
     console.error('Error sending email:', error);
     res.status(500).json({ error: 'Oops! Something went wrong, we couldn\'t send your message.' });
   }
-};
+}
