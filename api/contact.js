@@ -45,6 +45,15 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Log environment variables (without showing passwords)
+    console.log('Environment check:', {
+      SMTP_HOST: process.env.SMTP_HOST,
+      SMTP_PORT: process.env.SMTP_PORT,
+      SMTP_USER: process.env.SMTP_USER,
+      SMTP_PASS: process.env.SMTP_PASS ? '***SET***' : 'NOT SET',
+      MAIL_TO: process.env.MAIL_TO
+    });
+
     // Parse the form data
     const { fields, files } = await parseForm(req);
 
@@ -108,7 +117,6 @@ export default async function handler(req, res) {
       text: emailContent,
       attachments: attachments,
     };
-
     // Send email
     await transporter.sendMail(mailOptions);
 
@@ -120,7 +128,12 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'Thank You! Your message has been sent successfully.' });
 
   } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Oops! Something went wrong, we couldn\'t send your message.' });
+    console.error('Full error:', error);
+    console.error('Error message:', error.message);
+    console.error('Error code:', error.code);
+    res.status(500).json({
+      error: 'Oops! Something went wrong, we couldn\'t send your message.',
+      debug: error.message // Remove this after debugging
+    });
   }
 }
